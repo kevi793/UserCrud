@@ -12,7 +12,6 @@ import java.util.UUID;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 
-import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
@@ -20,7 +19,6 @@ import lombok.Setter;
 @Getter
 @Setter
 @NoArgsConstructor
-@Builder
 public class UserDto {
 
     private UUID id;
@@ -32,7 +30,7 @@ public class UserDto {
 
     @JsonProperty("middle-name")
     @Size(max = 50, message = "Middle Name cannot be more than 50 characters long.")
-    private String middleName = "";
+    private String middleName;
 
     @NotNull
     @JsonProperty("last-name")
