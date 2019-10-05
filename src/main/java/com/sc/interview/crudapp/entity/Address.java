@@ -6,6 +6,7 @@ import com.sc.interview.crudapp.constant.SchemaConstant;
 import javax.persistence.*;
 import javax.validation.constraints.Min;
 import javax.validation.constraints.Size;
+import java.sql.Timestamp;
 import java.util.UUID;
 
 import lombok.Getter;
@@ -17,7 +18,6 @@ import lombok.Setter;
 public class Address {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "ID", nullable = false)
     private UUID id;
 
@@ -61,4 +61,10 @@ public class Address {
     @Column(name = "CITY", nullable = false)
     @Size(max = 50)
     private String city;
+
+    @Column(name = "CREATED_TIMESTAMP", insertable = false, updatable = false, nullable = false)
+    private Timestamp createdTimestamp;
+
+    @Column(name = "UPDATED_TIMESTAMP", insertable = false, updatable = false, nullable = false)
+    private Timestamp updatedTimestamp;
 }

@@ -4,9 +4,10 @@ import com.sc.interview.crudapp.dto.UserDto;
 import com.sc.interview.crudapp.exception.UserDoesNotExistException;
 import com.sc.interview.crudapp.service.UserService;
 
-import javax.validation.Valid;
 import java.util.List;
 import java.util.UUID;
+
+import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -38,7 +39,11 @@ public class UserController {
     }
 
     /**
-     * update a user.
+     * Update a user
+     * @param id Id of the user to update
+     * @param userDto Dto having updated values.
+     * @return updated userDto
+     * @throws UserDoesNotExistException
      */
     @PutMapping("/users/{id}")
     public ResponseEntity update(
@@ -53,6 +58,12 @@ public class UserController {
         return ResponseEntity.ok(userUpdated);
     }
 
+    /**
+     *
+     * @param id of the user to delete.
+     * @return void
+     * @throws UserDoesNotExistException
+     */
     @DeleteMapping("/users/{id}")
     public ResponseEntity delete(
             @RequestParam(name = "id") final UUID id

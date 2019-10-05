@@ -5,6 +5,7 @@ import com.sc.interview.crudapp.constant.SchemaConstant;
 import javax.persistence.*;
 import javax.validation.constraints.Size;
 import java.sql.Date;
+import java.sql.Timestamp;
 import java.util.List;
 import java.util.UUID;
 
@@ -18,7 +19,6 @@ import lombok.Setter;
 public class User {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "ID", nullable = false)
     private UUID id;
 
@@ -63,5 +63,11 @@ public class User {
 
     @OneToMany(fetch = FetchType.LAZY, mappedBy = "user", cascade = CascadeType.ALL)
     private List<Address> addressList;
+
+    @Column(name = "CREATED_TIMESTAMP", insertable = false, updatable = false, nullable = false)
+    private Timestamp createdTimestamp;
+
+    @Column(name = "UPDATED_TIMESTAMP", insertable = false, updatable = false, nullable = false)
+    private Timestamp updatedTimestamp;
 
 }
