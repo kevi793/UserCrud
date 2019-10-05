@@ -51,14 +51,14 @@ public class Address {
     private String countryCode;
 
     @Column(name = "ZIP_CODE", nullable = false)
-    @Min(1)
+    @Min(0)
     private int zipcode;
 
     @Column(name = "STATE", nullable = false)
     @Size(max = 50)
     private String state;
 
-    @Column(name = "STATE", nullable = false)
+    @Column(name = "CITY", nullable = false)
     @Size(max = 50)
     private String city;
 }
