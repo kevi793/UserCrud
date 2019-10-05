@@ -11,11 +11,11 @@ import org.springframework.data.jpa.repository.Query;
 public interface UserRepository extends JpaRepository<User, UUID> {
 
     @Query("SELECT DISTINCT user FROM User as user "
-            + "left join fetch user.addresses as address")
+            + "left join fetch user.addressList as address ")
     public List<User> findUsersWithAddresses();
 
     @Query("SELECT DISTINCT user FROM User as user "
-            + "left join fetch user.addresses as address "
-            + "WHERE user.id = :uuid")
-    public List<User> findUserWithAddresses(UUID uuid);
+            + "left join fetch user.addressList as address "
+            + "where user.id = :uuid")
+    public User findUserWithAddresses(UUID uuid);
 }
