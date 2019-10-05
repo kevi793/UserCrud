@@ -10,10 +10,12 @@ apply plugin: 'net.ltgt.apt-idea'
 
 project.ext {
 	mapstructVersion = '1.1.0.Final'
+	jarName = 'crud-app'
+	versionName = '0.0.1'
 }
 
 group = 'com.sc.interview'
-version = '0.0.1-SNAPSHOT'
+version = '0.0.1'
 sourceCompatibility = '1.8'
 
 configurations {
@@ -37,4 +39,13 @@ dependencies {
 	annotationProcessor "org.mapstruct:mapstruct-processor:${project.mapstructVersion}"
 	providedRuntime 'org.springframework.boot:spring-boot-starter-tomcat'
 	testImplementation 'org.springframework.boot:spring-boot-starter-test'
+}
+
+jar {
+	baseName = "${project.jarName}"
+	version = "${project.versionName}"
+}
+
+war {
+	baseName = "${project.jarName}"
 }

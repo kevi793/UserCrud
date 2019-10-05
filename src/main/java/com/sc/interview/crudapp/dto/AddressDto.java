@@ -3,8 +3,6 @@ package com.sc.interview.crudapp.dto;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.sc.interview.crudapp.entity.AddressType;
 
-import java.util.UUID;
-
 import javax.validation.constraints.Min;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
@@ -18,7 +16,7 @@ import lombok.Setter;
 @NoArgsConstructor
 public class AddressDto {
 
-    private UUID id;
+    private int id;
 
     @NotNull
     @JsonProperty("type")

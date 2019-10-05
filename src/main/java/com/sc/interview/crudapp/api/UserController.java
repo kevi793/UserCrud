@@ -5,7 +5,6 @@ import com.sc.interview.crudapp.exception.UserDoesNotExistException;
 import com.sc.interview.crudapp.service.UserService;
 
 import java.util.List;
-import java.util.UUID;
 
 import javax.validation.Valid;
 
@@ -30,6 +29,16 @@ public class UserController {
     }
 
     /**
+     * get user by id.
+     */
+    @GetMapping("/users/{id}")
+    public ResponseEntity<UserDto> get(@PathVariable(name = "id") final int id)
+                throws UserDoesNotExistException {
+        UserDto userDto = this.userService.getUserWithAddresses(id);
+        return ResponseEntity.ok(userDto);
+    }
+
+    /**
      * create a user.
      */
     @PostMapping("/users")
@@ -47,7 +56,7 @@ public class UserController {
      */
     @PutMapping("/users/{id}")
     public ResponseEntity update(
-            @RequestParam(name = "id") final UUID id,
+            @PathVariable(name = "id") final int id,
             @Valid @RequestBody UserDto userDto) throws UserDoesNotExistException {
 
         if (id != userDto.getId()) {
@@ -66,7 +75,7 @@ public class UserController {
      */
     @DeleteMapping("/users/{id}")
     public ResponseEntity delete(
-            @RequestParam(name = "id") final UUID id
+            @PathVariable(name = "id") final int id
     ) throws UserDoesNotExistException {
         this.userService.delete(id);
         return new ResponseEntity<>(HttpStatus.OK);

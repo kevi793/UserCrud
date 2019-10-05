@@ -12,7 +12,6 @@ import com.sc.interview.crudapp.service.AddressService;
 
 import java.util.List;
 import java.util.Optional;
-import java.util.UUID;
 import java.util.stream.Collectors;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -32,7 +31,7 @@ public class AddressServiceImpl implements AddressService {
     }
 
     @Override
-    public List<AddressDto> get(UUID userId) throws UserDoesNotExistException {
+    public List<AddressDto> get(int userId) throws UserDoesNotExistException {
 
         Optional<User> user = this.userRepository.findById(userId);
 
@@ -48,7 +47,7 @@ public class AddressServiceImpl implements AddressService {
     }
 
     @Override
-    public AddressDto create(UUID userId, AddressDto addressDto) throws UserDoesNotExistException {
+    public AddressDto create(int userId, AddressDto addressDto) throws UserDoesNotExistException {
         Optional<User> user = this.userRepository.findById(userId);
 
         if (!user.isPresent()) {
@@ -86,7 +85,7 @@ public class AddressServiceImpl implements AddressService {
     }
 
     @Override
-    public void delete(UUID id) throws AddressDoesNotExistException {
+    public void delete(int id) throws AddressDoesNotExistException {
         Optional<Address> addressToDelete = this.addressRepository.findById(id);
         if (!addressToDelete.isPresent()) {
             throw new AddressDoesNotExistException("Cannot delete address which does not exist.");

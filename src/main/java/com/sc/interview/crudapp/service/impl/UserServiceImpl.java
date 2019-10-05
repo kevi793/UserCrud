@@ -9,7 +9,6 @@ import com.sc.interview.crudapp.service.UserService;
 
 import java.util.List;
 import java.util.Optional;
-import java.util.UUID;
 import java.util.stream.Collectors;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -32,8 +31,13 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public UserDto getUserWithAddresses(UUID uuid) {
-        User user = this.userRepository.findUserWithAddresses(uuid);
+    public UserDto getUserWithAddresses(int id) throws UserDoesNotExistException {
+        User user = this.userRepository.findUserWithAddresses(id);
+
+        if (user == null) {
+            throw new UserDoesNotExistException("User does not exist.");
+        }
+
         return EntityMapper.Instance.toUserDto(user);
     }
 
@@ -49,7 +53,7 @@ public class UserServiceImpl implements UserService {
         Optional<User> userToUpdateOptional = this.userRepository.findById(userDto.getId());
         if (!userToUpdateOptional.isPresent()) {
             throw new UserDoesNotExistException(
-                        String.format("User does not exist with Id: %s", userDto.getId().toString()));
+                        String.format("User does not exist with Id: %s", userDto.getId()));
         }
 
         User userToUpdate = userToUpdateOptional.get();
@@ -68,8 +72,8 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public void delete(UUID uuid) throws UserDoesNotExistException {
-        Optional<User> userToDelete = this.userRepository.findById(uuid);
+    public void delete(int id) throws UserDoesNotExistException {
+        Optional<User> userToDelete = this.userRepository.findById(id);
         if (!userToDelete.isPresent()) {
             throw new UserDoesNotExistException("Cannot delete user which does not exist.");
         }

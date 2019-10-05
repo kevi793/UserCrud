@@ -1,13 +1,11 @@
 package com.sc.interview.crudapp.entity;
 
-import com.sc.interview.crudapp.constant.SchemaConstant;
-
-import javax.persistence.*;
-import javax.validation.constraints.Size;
 import java.sql.Date;
 import java.sql.Timestamp;
 import java.util.List;
-import java.util.UUID;
+
+import javax.persistence.*;
+import javax.validation.constraints.Size;
 
 import lombok.Getter;
 import lombok.Setter;
@@ -19,8 +17,8 @@ import lombok.Setter;
 public class User {
 
     @Id
-    @Column(name = "ID", nullable = false)
-    private UUID id;
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private int id;
 
     @Column(name = "FIRST_NAME", nullable = false)
     @Size(max = 50)

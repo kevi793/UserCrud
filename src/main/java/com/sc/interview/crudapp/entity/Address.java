@@ -1,13 +1,12 @@
 package com.sc.interview.crudapp.entity;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
-import com.sc.interview.crudapp.constant.SchemaConstant;
+
+import java.sql.Timestamp;
 
 import javax.persistence.*;
 import javax.validation.constraints.Min;
 import javax.validation.constraints.Size;
-import java.sql.Timestamp;
-import java.util.UUID;
 
 import lombok.Getter;
 import lombok.Setter;
@@ -19,8 +18,9 @@ import lombok.Setter;
 public class Address {
 
     @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "ID", nullable = false)
-    private UUID id;
+    private int id;
 
     @JoinColumn(name = "USER_ID", nullable = false)
     @ManyToOne(fetch = FetchType.LAZY)

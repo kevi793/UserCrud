@@ -7,7 +7,6 @@ import com.sc.interview.crudapp.entity.Gender;
 
 import java.sql.Date;
 import java.util.List;
-import java.util.UUID;
 
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
@@ -21,7 +20,7 @@ import lombok.Setter;
 @NoArgsConstructor
 public class UserDto {
 
-    private UUID id;
+    private int id;
 
     @NotNull
     @Size(max = 50, message = "First Name cannot be more than 50 characters long.")
