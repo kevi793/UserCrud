@@ -12,9 +12,10 @@ import java.util.UUID;
 import lombok.Getter;
 import lombok.Setter;
 
+@Entity
 @Getter
 @Setter
-@Table(name = "ADDRESS", schema = SchemaConstant.SchemaName)
+@Table(name = "ADDRESS", schema = "SC_CRUD")
 public class Address {
 
     @Id
