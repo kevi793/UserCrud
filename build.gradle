@@ -2,6 +2,13 @@ plugins {
 	id 'org.springframework.boot' version '2.1.9.RELEASE'
 	id 'io.spring.dependency-management' version '1.0.8.RELEASE'
 	id 'java'
+	id 'net.ltgt.apt' version '0.20'
+}
+
+apply plugin: 'net.ltgt.apt-idea'
+
+project.ext {
+	mapstructVersion = '1.1.0.Final'
 }
 
 group = 'com.sc.interview'
@@ -22,8 +29,10 @@ dependencies {
 	implementation 'org.springframework.boot:spring-boot-starter-actuator'
 	implementation 'org.springframework.boot:spring-boot-starter-data-jpa'
 	implementation 'org.springframework.boot:spring-boot-starter-web'
+	implementation "org.mapstruct:mapstruct:${project.mapstructVersion}"
 	compileOnly 'org.projectlombok:lombok'
 	runtimeOnly 'mysql:mysql-connector-java'
 	annotationProcessor 'org.projectlombok:lombok'
+	annotationProcessor "org.mapstruct:mapstruct-processor:${project.mapstructVersion}"
 	testImplementation 'org.springframework.boot:spring-boot-starter-test'
 }
