@@ -5,8 +5,15 @@ import com.sc.interview.crudapp.constant.SchemaConstant;
 import javax.persistence.*;
 import javax.validation.constraints.Size;
 import java.sql.Date;
+import java.util.List;
 import java.util.UUID;
 
+import lombok.Getter;
+import lombok.Setter;
+
+@Entity
+@Getter
+@Setter
 @Table(name = "USER", schema = SchemaConstant.SchemaName)
 public class User {
 
@@ -53,5 +60,8 @@ public class User {
     @Enumerated(EnumType.STRING)
     @Column(name = "CUSTOMER_SEGMENT", nullable = false)
     private CustomerSegment customerSegment;
+
+    @OneToMany(fetch = FetchType.LAZY, mappedBy = "user", cascade = CascadeType.ALL)
+    private List<Address> addressList;
 
 }

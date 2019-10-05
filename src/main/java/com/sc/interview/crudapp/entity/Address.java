@@ -1,5 +1,6 @@
 package com.sc.interview.crudapp.entity;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.sc.interview.crudapp.constant.SchemaConstant;
 
 import javax.persistence.*;
@@ -7,6 +8,11 @@ import javax.validation.constraints.Min;
 import javax.validation.constraints.Size;
 import java.util.UUID;
 
+import lombok.Getter;
+import lombok.Setter;
+
+@Getter
+@Setter
 @Table(name = "ADDRESS", schema = SchemaConstant.SchemaName)
 public class Address {
 
@@ -14,6 +20,11 @@ public class Address {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "ID", nullable = false)
     private UUID id;
+
+    @JoinColumn(name = "USER_ID", nullable = false)
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JsonIgnore
+    private User user;
 
     @Enumerated(EnumType.STRING)
     @Column(name = "ADDRESS_TYPE", nullable = false)
